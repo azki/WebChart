@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Untitled Document</title>
+		<script type="text/javascript" src="src/df.core.js"></script>
+		<script type="text/javascript" src="src/df.chart.js"></script>
+		<script type="text/javascript">
+		
+		function gotoTop(){
+			var e = document.getElementById("item1__label____inner__") ;
+			var id = "frame1" ;
+			var p = e.parentNode ;
+			var found = false ;
+			
+			var offsetLeft = e.offsetLeft ; 
+			var offsetTop = e.offsetTop ; 
+			
+			while(!found && p) {
+				
+				if(p.id == id) {
+					found = true ;
+				}
+				else {
+					offsetLeft = offsetLeft + p.offsetLeft ; 
+					offsetTop = offsetTop + p.offsetTop ; 
+				}
+				p = p.parentNode ;
+			}
+			
+			if(found) {
+				//alert("offsetLeft : " + offsetLeft + ", " + "offsetTop : " + offsetTop) ;
+			}
+			
+		}
+		
+		function printLog(obj) {
+			var children = obj.childNodes ;
+			if(children.length > 0) {
+				for(var i = 0 ; i < children.length; i++) {
+					printLog(children.item(i)) ;
+				}
+			}
+			
+			var e = document.getElementById("log") ;
+			
+			if(e != null) {
+				e.textContent = e.textContent + " || " + obj.id ;
+			}
+		}
+					
+		function createLegendItem() {
+			var top = 100 ;
+			var left = 0 ; 
+			var width = 800 ;
+			var height = 600 ; 
+			
+			var mainFrame = new dfMainframe("frame1", left, top, left + width, top + height) ;
+			mainFrame.setParentHTMLObject(window.document.body) ;
+			df.$f = mainFrame ; 
+			
+			top = 10 ;
+			left = 10 ; 
+			width = 80 ;
+			height = 20 ; 
+			 
+			var item = new dfChartLegendLabel("item1", left, top, left + width, top + height) ;
+			item.setText("item") ; 
+			
+			mainFrame.appendChild(item) ;
+			
+			var root = mainFrame.e ;
+			
+			printLog(root) ;
+			
+			item.draw() ;
+		}
+		
+		function createLegend() {
+			var top = 100 ;
+			var left = 0 ; 
+			var width = 800 ;
+			var height = 600 ; 
+			
+			var mainFrame = new dfMainframe("frame1", left, top, left + width, top + height) ;
+			mainFrame.setParentHTMLObject(window.document.body) ;
+			df.$f = mainFrame ; 
+			
+			top = 250 ;
+			left = 150 ; 
+			width = 105 ;
+			height = 250 ; 
+			 
+			var legend = new dfChartLegend("legend1", left, top, left + width, top + height) ;
+			legend.setText("legend1") ; 
+			
+			mainFrame.appendChild(legend) ;
+			
+			legend.addItem(1, "Items 1", 1, "black", "solid", 1, "black", "white", "solid") ;
+			legend.addItem(1, "Items 2", 1, "black", "solid", 1, "black", "white", "solid") ;
+		}
+
+		function main() {
+			//createLegendItem() ; 
+			createLegend() ;
+			//gotoTop() ;
+		}		
+		</script>
+	</head>
+	<body>
+		<input type="button" onclick="main()" value="run main()" />
+		<div id="log"></div>
+	</body>
+</html>

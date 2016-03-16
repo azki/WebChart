@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<script type="text/javascript">
+		
+		// Root가 될 HTML Element (DIV)를 추가합니다.	
+		function addRoot() {
+			var d = window.document.createElement("div");
+			d.name = "divRoot" ;
+			d.id = "divRoot" ;
+			  
+			window.document.body.appendChild(d) ;
+		}	
+		
+		// divRoot 의 HTML Element를 꺼내 온 후 1,000 개의 자식 Element를 추가합니다.
+		function addElements() {
+			var d = window.document.getElementById("divRoot") ;
+			
+			if(d != null && d!= undefined) {
+				for(var i = 0 ; i < 1000; i++) {
+					var c = window.document.createElement("div");
+					var t = window.document.createTextNode("text " + i);
+					
+					c.id = "divChild_" + i ;
+					c.appendChild(t) ;
+					
+					d.appendChild(c) ;
+				}
+			}
+		}	
+		
+		// id에 해당하는 HTML Element를 읽어 옵니다.
+		function getElements(id) {
+			var d = window.document.getElementById(id) ;
+			alert(d.innerHTML) ;
+		}
+		
+		
+		function deleteElement(id) {
+			var d = window.document.getElementById("divRoot") ;
+			var c = window.document.getElementById(id) ;
+			
+			d.removeChild(c) ;
+		}
+		
+		function deleteElementAll(root) {
+			var a = [] ;
+			var c = root.childNodes ;
+			
+			if(c.length > 0) {
+				for(var i = 0 ; i < c.length; i++) {
+					a.push(c.item(i)) ;
+				}
+				
+				for(var i = 0 ; i < a.length; i++) {
+					deleteElementAll(a[i]) ;
+					root.removeChild(a[i]) ;
+				}
+			}
+		}
+		
+		function addElement() {
+			addRoot() ;
+			addElements() ;
+		}
+		
+		function getElement(){
+			getElements("divChild_65") ;
+		}
+		
+		function deleteElement() {
+			var d = window.document.getElementById("divRoot") ;
+			
+			//deleteElement() ;
+			deleteElementAll(d) ;
+		}
+		</script>
+		<title>Untitled Document</title>
+	</head>
+	<body>
+		<input type="button" value="run add()" onclick="addElement()"/>
+		<input type="button" value="run get()" onclick="getElement()"/>
+		<input type="button" value="run delete()" onclick="deleteElement()"/>
+	</body>
+</html>

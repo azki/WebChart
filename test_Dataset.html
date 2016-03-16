@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+		<script type="text/javascript" src="src/TOBE/Core.js"></script>
+		<script type="text/javascript" src="src/TOBE/ClassUtils.js"></script>
+		<script type="text/javascript" src="src/TOBE/Event.js"></script>
+		<script type="text/javascript" src="src/TOBE/EventListenerList.js"></script>
+		<script type="text/javascript" src="src/TOBE/lang.js"></script>
+
+		<script type="text/javascript" src="src/TOBE/data/DataTypes.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/TypeConverter.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/ColumnHeader.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataRow.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSetColumnInfo.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSet.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSetEvent.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSetList.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/VariableList.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/PlatformData.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSource.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataUtils.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/XmlUtils.js"></script>
+		<script type="text/javascript">
+		function main() {
+			ds = new Dataset();
+			 
+			ds.addColumn("column00", "string", 256);
+			ds.addColumn("column01", "int", 256);
+			ds.addColumn("column02", "float", 256);
+			ds.addColumn("column03", "date", 256);
+			
+			var row = ds.addRow();
+			
+			ds.setColumn(row, "column00", "abc");
+			ds.setColumn(row, "column01", 123);
+			ds.setColumn(row, "column02", 456);
+			ds.setColumn(row, "column03", "2010-01-01");
+			
+			ds.addRow();
+			ds.addRow();
+			ds.addRow();
+			ds.addRow();			
+			
+			alert("ds.getColCount()=" + ds.getColCount());
+			alert("ds.getRowCount()=" + ds.getRowCount());
+			alert("ds.getColumn(0, 'column00')=" + ds.getColumn(0, "column00"));
+			alert("ds.getColumn(0, 'column01')=" + ds.getColumn(0, "column01"));
+			alert("ds.getColumn(0, 'column02')=" + ds.getColumn(0, "column02"));
+			alert("ds.getColumn(0, 'column03')=" + ds.getColumn(0, "column03"));		}
+		</script>		
+		<title>Untitled Document</title>
+	</head>
+	<body>
+		<input type="button" value="run main()" onclick="main()"></input>
+	</body>
+</html>

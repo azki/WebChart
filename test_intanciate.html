@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<script type="text/javascript">
+		function base(){} ;
+		
+		base.prototype.init = function() {
+			this.x = 0 ;
+			this.y = 0 ;
+		}
+		base.prototype.z = 0 ;
+		
+		function base1() {} ;
+		base1.prototype = new base() ;
+
+		function class1() {} ;
+		class1.prototype.init = function() {
+			this.b = new base1() ;
+		}
+		
+		
+		function main() {
+			var c1 = new class1() ; 
+			var c2 = new class1() ; 
+			
+			c1.init() ;
+			c2.init() ;
+			
+			c1.b.x = 7 ;
+			c2.b.x = 27 ;
+			
+			c1.b.z = 37 ;
+			c2.b.z = 47 ;
+			
+			alert("c1.b.x = " + c1.b.x  + "\r\n" + "c2.b.x = " + c2.b.x  + "\r\n" + "c1.b.z = " + c1.b.z  + "\r\n" + "c2.b.z = " + c2.b.z  + "\r\n") ;
+
+			/*
+			var b1 = new base() ;
+			var b2 = new base() ;
+			
+			b1.x = 9 ;
+			b2.x = 29 ;
+			b1.z = 2 ;
+			b2.z = 22 ;
+			
+			alert("b1.x = " + b1.x  + "\r\n" + "b2.x = " + b2.x  + "\r\n" + "b1.z = " + b1.z  + "\r\n" + "b2.z = " + b2.z  + "\r\n") ;
+			*/
+		}
+		
+		
+		</script>
+		<title>Untitled Document</title>
+	</head>
+	<body>
+		<input type="button" value="run main()" onclick="main()"/>
+	</body>
+</html>

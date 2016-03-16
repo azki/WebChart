@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<script type="text/javascript">
+		function createCanvas(id) {
+			var canvas = document.createElement("canvas") ;
+			
+			canvas.id = id ;
+			
+			canvas.style.position = "absolute" ;
+			canvas.style.left = "0px" ;
+			canvas.style.top = "100px" ;
+			canvas.width = "800" ;
+			canvas.height = "600" ;
+			
+			canvas.addEventListener("mousemove", onCanvasMouseMove, false) ;
+			
+			document.body.appendChild(canvas) ;
+		}
+		
+		function drawLine(id){
+			var canvas = document.getElementById(id) ;
+			var context = canvas.getContext("2d") ;
+			
+			var x = 10 ; 
+			var y = 10 ;
+			
+			
+			context.beginPath() ;
+
+			context.strokeStyle = "black" ;
+			context.lineWidth = 1 ;
+
+			context.moveTo(x, y) ;
+			context.lineTo(x + 50 , y) ;
+			 
+			context.closePath();
+			
+			context.stroke();
+			
+		}
+
+		function drawArc(id) {
+			var canvas = document.getElementById(id) ;
+			var context = canvas.getContext("2d");
+			
+			var x = 100 ; 
+			var y = 100 ;
+			
+			var radius = 100 ;
+			
+			var beginAngle = 0 ;
+			var endAngle = 360 ;
+			
+			var thickness = 2 ;
+			var lineColor = "black" ;
+			var fillColor = "yellow" ; 
+			
+			var beginRadian = ((beginAngle / 360) * Math.PI * 2);
+			var endRadian = beginRadian + ((endAngle / 360) * Math.PI * 2);
+			
+
+			context.lineWidth = thickness ;
+			context.strokeStyle = lineColor ;
+
+			context.beginPath() ;
+
+			if(fillColor != undefined) {
+				context.fillStyle = fillColor ;
+			}
+			 
+			//context.moveTo(x, y) ;
+			context.arc(x, y, radius, beginRadian, endRadian, false) ; 
+			
+			context.closePath();
+
+			if(fillColor != undefined) {
+				context.fill() ;
+			}
+	
+			context.stroke();
+			
+			var d = document.getElementById("value") ;
+			d.textContent = "x = " + x + ", y = " + y +  ", radius = " + radius + ", beginRadian = " + beginRadian + " , endRadian = " + endRadian;
+		}
+		
+		function onCanvasMouseMove(ev) {
+			var d = document.getElementById("position") ;
+			d.textContent = "x = " + ev.layerX + ", y = " + ev.layerY ;
+		}
+		
+		
+		function divTest() {
+			var e = document.createElement("DIV") ;
+			e.id = "one" ;
+			e.style.position = "absolute" ;
+			e.style.top = "100px" ;
+			e.style.left = "100px" ; 
+			e.style.width = "100px" ;
+			e.style.height = "100px" ; 
+			e.textContent = "asdfasdfasdfasdfaf" ;
+			
+			document.body.appendChild(e) ; 
+			
+		}
+		function main() {
+			createCanvas("canvas1") ;
+			//drawLine("canvas1") ;
+			divTest() ; 
+			drawArc("canvas1") ;
+			
+		}
+		</script>
+		<title>Untitled Document</title>
+	</head>
+	<body>
+		<div id="value"></div>
+		<div id="position"> "x :  , y :" </div>
+		<input type="button" value="run main()" onclick="main()"/>
+	</body>
+</html>

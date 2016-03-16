@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.0">
+  <TypeDefinition url="..\..\default_typedef.xml"/>
+  <Form id="dssample" classname="dssample" inheritanceid="" cachelevel="" position="absolute 0 0 1024 768" version="" titletext="New Form">
+    <Layout>
+      <Button id="Button00" taborder="0" text="Button00" position="absolute 72 60 192 110" onclick="Button00_onclick"/>
+      <Grid id="Grid00" taborder="1" position="absolute 274 59 706 316" binddataset="Dataset00">
+        <Formats>
+          <Format id="default">
+            <Columns>
+              <Column size="80"/>
+              <Column size="80"/>
+              <Column size="80"/>
+            </Columns>
+            <Rows>
+              <Row size="24" band="head"/>
+              <Row size="24"/>
+            </Rows>
+            <Band id="head">
+              <Cell text="Column0"/>
+              <Cell col="1" text="Column1"/>
+              <Cell col="2" text="Column2"/>
+            </Band>
+            <Band id="body">
+              <Cell text="bind:Column0"/>
+              <Cell col="1" text="bind:Column1"/>
+              <Cell col="2" style="background:EXPR((currow == 1) ? 'red' : '');background2:EXPR((currow == 1) ? 'red' : '');" text="bind:Column2"/>
+            </Band>
+          </Format>
+        </Formats>
+      </Grid>
+      <Button id="Button01" taborder="2" text="Button01" position="absolute 81 158 201 208" onclick="Button01_onclick"/>
+    </Layout>
+    <Script type="xscript4.0"><![CDATA[
+var ds;
+
+function Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	ds = new Dataset();
+	
+	ds.addColumn("column00", "string", 256);
+	ds.addColumn("column01", "int", 256);
+	ds.addColumn("column02", "float", 256);
+	ds.addColumn("column03", "date", 256);
+	
+	var row = ds.addRow();
+	ds.setColumn(row, "column00", "abc");
+	ds.setColumn(row, "column01", 123);
+	ds.setColumn(row, "column02", 456);
+	ds.setColumn(row, "column03", "2010-01-01");
+	
+	ds.addRow();
+	ds.addRow();
+	ds.addRow();
+	ds.addRow();
+	
+	ds.addEventListener("ALL", function(ds, e) {
+		alert("e.eventid=" + e.eventid);
+	});
+	
+	alert("ds.getColCount()=" + ds.getColCount());
+	alert("ds.getRowCount()=" + ds.getRowCount());
+	alert("ds.getColumn(0, 'column00')=" + ds.getColumn(0, "column00"));
+	alert("ds.getColumn(0, 'column01')=" + ds.getColumn(0, "column01"));
+	alert("ds.getColumn(0, 'column02')=" + ds.getColumn(0, "column02"));
+	alert("ds.getColumn(0, 'column03')=" + ds.getColumn(0, "column03"));
+}
+
+function Button01_onclick(obj:Button,  e:ClickEventInfo)
+{
+	ds.setColumn(0, "column00", "xyz");
+}
+]]></Script>
+    <Objects>
+      <Dataset id="Dataset00" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">2</Col>
+            <Col id="Column2">3</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">4</Col>
+            <Col id="Column1">5</Col>
+            <Col id="Column2">6</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">7</Col>
+            <Col id="Column1">8</Col>
+            <Col id="Column2">9</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

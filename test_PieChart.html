@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="src/TOBE/Core.js"></script>
+		<script type="text/javascript" src="src/TOBE/ClassUtils.js"></script>
+		<script type="text/javascript" src="src/TOBE/Event.js"></script>
+		<script type="text/javascript" src="src/TOBE/EventListenerList.js"></script>
+		<script type="text/javascript" src="src/TOBE/lang.js"></script>
+
+		<script type="text/javascript" src="src/TOBE/data/DataTypes.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/TypeConverter.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/ColumnHeader.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataRow.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSetColumnInfo.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSet.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSetEvent.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSetList.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/VariableList.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/PlatformData.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataSource.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/DataUtils.js"></script>
+		<script type="text/javascript" src="src/TOBE/data/XmlUtils.js"></script>
+
+		<script type="text/javascript" src="src/df.core.js"></script>
+		<script type="text/javascript" src="src/df.chart.js"></script>
+		<script type="text/javascript">
+			
+		function createSimpleDS() {
+			var ds = new Dataset();
+			 
+			ds.addColumn("column00", "string", 256);
+			ds.addColumn("column01", "int", 256);
+			ds.addColumn("column02", "float", 256);
+			ds.addColumn("column03", "date", 256);
+			
+			var row = ds.addRow();
+			
+			ds.setColumn(row, "column00", "abc");
+			ds.setColumn(row, "column01", 123);
+			ds.setColumn(row, "column02", 456);
+			ds.setColumn(row, "column03", "2010-01-01");
+			
+			ds.addRow();
+			ds.addRow();
+			ds.addRow();
+			ds.addRow();			
+
+			return ds ;
+		}	
+
+		function createDSForChart3() {
+
+			var ds = new Dataset();
+			 
+			ds.addColumn("Dept",  "string", 256);
+			ds.addColumn("Dept1", "string", 256);
+			ds.addColumn("Dept2", "string", 256);
+			ds.addColumn("Dept3", "string", 256);
+			ds.addColumn("Dept4", "string", 256);
+			ds.addColumn("合計", 	  "float", 256);
+			ds.addColumn("2005年03月", "float", 256);
+			ds.addColumn("2005年04月", "float", 256);
+			ds.addColumn("2005年05月", "float", 256);
+			ds.addColumn("2005年06月", "float", 256);
+			ds.addColumn("2005年07月", "float", 256);
+			ds.addColumn("2005年08月", "float", 256);
+			ds.addColumn("2005年09月", "float", 256);
+			ds.addColumn("2005年10月", "float", 256);
+			ds.addColumn("2005年11月", "float", 256);
+			ds.addColumn("2005年12月", "float", 256);
+			
+			////// 未登録
+			var row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録計");
+			ds.setColumn(row, "Dept1", "未登録 計"); 
+			ds.setColumn(row, "Dept2", "");
+			ds.setColumn(row, "Dept3", "");
+			ds.setColumn(row, "Dept4", "");
+			ds.setColumn(row, "合計",       1518111.4);
+			ds.setColumn(row, "2005年03月",  81730);
+			ds.setColumn(row, "2005年04月", 387460);
+			ds.setColumn(row, "2005年05月", 387460);
+			ds.setColumn(row, "2005年06月", 660101.4);
+			ds.setColumn(row, "2005年07月",   1360);
+			ds.setColumn(row, "2005年08月",      0);
+			ds.setColumn(row, "2005年09月",      0);
+			ds.setColumn(row, "2005年10月",      0);
+			ds.setColumn(row, "2005年11月",      0);
+			ds.setColumn(row, "2005年12月",      0);
+			
+			
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 未登録 計");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "未登録 計");
+			ds.setColumn(row, "Dept3", "");
+			ds.setColumn(row, "Dept4", "");
+			ds.setColumn(row, "合計",       355731.4);
+			ds.setColumn(row, "2005年03月",  81730);
+			ds.setColumn(row, "2005年04月",      0);
+			ds.setColumn(row, "2005年05月",      0);
+			ds.setColumn(row, "2005年06月", 272641.4);
+			ds.setColumn(row, "2005年07月",   1360);
+			ds.setColumn(row, "2005年08月",      0);
+			ds.setColumn(row, "2005年09月",      0);
+			ds.setColumn(row, "2005年10月",      0);
+			ds.setColumn(row, "2005年11月",      0);
+			ds.setColumn(row, "2005年12月",      0);
+						
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 未登録");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "未登録");
+			ds.setColumn(row, "Dept3", "");
+			ds.setColumn(row, "Dept4", "");
+			ds.setColumn(row, "合計",       355731.4);
+			ds.setColumn(row, "2005年03月",  81730);
+			ds.setColumn(row, "2005年04月",      0);
+			ds.setColumn(row, "2005年05月",      0);
+			ds.setColumn(row, "2005年06月", 272641.4);
+			ds.setColumn(row, "2005年07月",   1360);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+						
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部 計");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部 計");
+			ds.setColumn(row, "Dept3", "");
+			ds.setColumn(row, "Dept4", "");
+			ds.setColumn(row, "合計",       1162380);
+			ds.setColumn(row, "2005年03月",       0);
+			ds.setColumn(row, "2005年04月",  387460);
+			ds.setColumn(row, "2005年05月",  387460);
+			ds.setColumn(row, "2005年06月",  387460);
+			ds.setColumn(row, "2005年07月",       0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+						
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部");
+			ds.setColumn(row, "Dept3", "");
+			ds.setColumn(row, "Dept4", "");
+			ds.setColumn(row, "合計",        79260);
+			ds.setColumn(row, "2005年03月",      0);
+			ds.setColumn(row, "2005年04月",  26420);
+			ds.setColumn(row, "2005年05月",  26420);
+			ds.setColumn(row, "2005年06月",  26420);
+			ds.setColumn(row, "2005年07月",      0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部 営業部 計");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部");
+			ds.setColumn(row, "Dept3", "営業部 計");
+			ds.setColumn(row, "Dept4", "");
+			ds.setColumn(row, "合計",       541560);
+			ds.setColumn(row, "2005年03月",      0);
+			ds.setColumn(row, "2005年04月", 180520);
+			ds.setColumn(row, "2005年05月", 180520);
+			ds.setColumn(row, "2005年06月", 180520);
+			ds.setColumn(row, "2005年07月",      0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部 営業部");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部");
+			ds.setColumn(row, "Dept3", "営業部");
+			ds.setColumn(row, "Dept4", "");
+			ds.setColumn(row, "合計",       158520);
+			ds.setColumn(row, "2005年03月",      0);
+			ds.setColumn(row, "2005年04月", 52840);
+			ds.setColumn(row, "2005年05月", 52840);
+			ds.setColumn(row, "2005年06月", 52840);
+			ds.setColumn(row, "2005年07月",      0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部 営業部 第一担当");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部");
+			ds.setColumn(row, "Dept3", "営業部 計");
+			ds.setColumn(row, "Dept4", "第一担当");
+			ds.setColumn(row, "合計",       264150);
+			ds.setColumn(row, "2005年03月",      0);
+			ds.setColumn(row, "2005年04月", 88050);
+			ds.setColumn(row, "2005年05月", 88050);
+			ds.setColumn(row, "2005年06月", 88050);
+			ds.setColumn(row, "2005年07月",     0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部 営業部 第二担当");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部");
+			ds.setColumn(row, "Dept3", "営業部 計");
+			ds.setColumn(row, "Dept4", "第二担当");
+			ds.setColumn(row, "合計",       118890);
+			ds.setColumn(row, "2005年03月",      0);
+			ds.setColumn(row, "2005年04月",  39630);
+			ds.setColumn(row, "2005年05月",  39630);
+			ds.setColumn(row, "2005年06月",  39630);
+			ds.setColumn(row, "2005年07月",      0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部 経理部 計");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部");
+			ds.setColumn(row, "Dept3", "経理部 計");
+			ds.setColumn(row, "Dept4", "");
+			ds.setColumn(row, "合計",       541560);
+			ds.setColumn(row, "2005年03月",      0);
+			ds.setColumn(row, "2005年04月", 180520);
+			ds.setColumn(row, "2005年05月", 180520);
+			ds.setColumn(row, "2005年06月", 180520);
+			ds.setColumn(row, "2005年07月",      0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部 経理部");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部");
+			ds.setColumn(row, "Dept3", "経理部");
+			ds.setColumn(row, "Dept4", "");
+			ds.setColumn(row, "合計",       158520);
+			ds.setColumn(row, "2005年03月",      0);
+			ds.setColumn(row, "2005年04月",  52840);
+			ds.setColumn(row, "2005年05月",  52840);
+			ds.setColumn(row, "2005年06月",  52840);
+			ds.setColumn(row, "2005年07月",      0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+			
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部 経理部 第一担当");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部");
+			ds.setColumn(row, "Dept3", "経理部");
+			ds.setColumn(row, "Dept4", "第一担当");
+			ds.setColumn(row, "合計",        39630);
+			ds.setColumn(row, "2005年03月",      0);
+			ds.setColumn(row, "2005年04月",  13210);
+			ds.setColumn(row, "2005年05月",  13210);
+			ds.setColumn(row, "2005年06月",  13210);
+			ds.setColumn(row, "2005年07月",      0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "未登録 ○○事業部 経理部 第二担当");
+			ds.setColumn(row, "Dept1", "未登録"); 
+			ds.setColumn(row, "Dept2", "○○事業部");
+			ds.setColumn(row, "Dept3", "経理部");
+			ds.setColumn(row, "Dept4", "第二担当");
+			ds.setColumn(row, "合計",       343410);
+			ds.setColumn(row, "2005年03月",      0);
+			ds.setColumn(row, "2005年04月", 114470);
+			ds.setColumn(row, "2005年05月", 114470);
+			ds.setColumn(row, "2005年06月", 114470);
+			ds.setColumn(row, "2005年07月",      0);
+			ds.setColumn(row, "2005年08月", 0);
+			ds.setColumn(row, "2005年09月", 0);
+			ds.setColumn(row, "2005年10月", 0);
+			ds.setColumn(row, "2005年11月", 0);
+			ds.setColumn(row, "2005年12月", 0);
+
+			//// 平均 ////////////////////////////////////////////
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "平均");
+			ds.setColumn(row, "Dept1", ""); 
+			ds.setColumn(row, "Dept2", "");
+			ds.setColumn(row, "Dept3", "");
+			ds.setColumn(row, "Dept4", "平均");
+			ds.setColumn(row, "合計",           0);
+			ds.setColumn(row, "2005年03月",   5837.9);
+			ds.setColumn(row, "2005年04月",  52204.3);
+			ds.setColumn(row, "2005年05月",  52204.3);
+			ds.setColumn(row, "2005年06月",  71678.7);
+			ds.setColumn(row, "2005年07月",    572.1);
+			ds.setColumn(row, "2005年08月",      0);
+			ds.setColumn(row, "2005年09月",      0);
+			ds.setColumn(row, "2005年10月",      0);
+			ds.setColumn(row, "2005年11月",      0);
+			ds.setColumn(row, "2005年12月",      0);
+
+			row = ds.addRow();
+			ds.setColumn(row, "Dept",  "最大");
+			ds.setColumn(row, "Dept1", ""); 
+			ds.setColumn(row, "Dept2", "");
+			ds.setColumn(row, "Dept3", "");
+			ds.setColumn(row, "Dept4", "最大");
+			ds.setColumn(row, "合計",           0);
+			ds.setColumn(row, "2005年03月",  81730);
+			ds.setColumn(row, "2005年04月", 133400);
+			ds.setColumn(row, "2005年05月", 133400);
+			ds.setColumn(row, "2005年06月", 272641.4);
+			ds.setColumn(row, "2005年07月",   4380);
+			ds.setColumn(row, "2005年08月",      0);
+			ds.setColumn(row, "2005年09月",      0);
+			ds.setColumn(row, "2005年10月",      0);
+			ds.setColumn(row, "2005年11月",      0);
+			ds.setColumn(row, "2005年12月",      0);
+			
+			
+			return ds ;
+		}	
+
+		function testDS() {
+			var ds = createDSForChart2() ; 
+			var line = "" ;
+			
+			alert("ds.getColCount()=" + ds.getColCount());
+			alert("ds.getRowCount()=" + ds.getRowCount());
+			
+			line = "" ;
+			for(var i = 0 ; i < ds.getRowCount(); i++) {
+				line = line + ds.getColumn(i, "Dept") + " " ; 
+				//line = line + ds.getColumn(i, "Dept1") + " " ; 
+				//line = line + ds.getColumn(i, "Dept2") + " " ; 
+				//line = line + ds.getColumn(i, "Dept3") + " " ; 
+				//line = line + ds.getColumn(i, "Dept4") + " " ; 
+				line = line + ds.getColumn(i, "合計") + " " ; 
+				line = line + ds.getColumn(i, "2005年03月") + " " ; 
+				line = line + ds.getColumn(i, "2005年04月") + " " ; 
+				line = line + ds.getColumn(i, "2005年05月") + " " ; 
+				line = line + ds.getColumn(i, "2005年06月") + " " ; 
+				line = line + ds.getColumn(i, "2005年07月") + " " ; 
+				line = line + ds.getColumn(i, "2005年08月") + " " ; 
+				line = line + ds.getColumn(i, "2005年09月") + " " ; 
+				line = line + ds.getColumn(i, "2005年10月") + " " ; 
+				line = line + ds.getColumn(i, "2005年11月") + " " ; 
+				line = line + ds.getColumn(i, "2005年12月") ; 
+			}
+			
+			var e = document.getElementById("out") ;
+			e.textContent = line  ;
+			
+			alert(line) ;
+		}
+		
+		function createChart() {
+			var top = 100 ;
+			var left = 0 ; 
+			var width = 800 ;
+			var height = 600 ; 
+			
+			var mainFrame = new dfMainframe("frameForChart", left, top, left + width, top + height) ;
+			mainFrame.setParentHTMLObject(window.document.body) ;
+			df.$f = mainFrame ; 
+			
+			top = 50 ;
+			left = 50 ; 
+			width = 550 ;
+			height = 400 ; 
+			 
+			var chart = new dfChart("chart1", left, top, left + width, top + height) ;
+			
+			mainFrame.appendChild(chart) ;
+			
+			return chart ;
+		}
+		
+		function setChart(chart) {
+			setChartTitle(chart) ; 
+			setChartRuler(chart) ;
+			addSerieses(chart) ;
+		}
+		
+		function setChartTitle(chart) {
+			chart.title.setText("Annual Sales Report") ;
+		}
+		
+		function setChartRuler(chart) {
+			chart.xaxis.rulerbasetype = "distance" ;
+
+			chart.xaxis.rulermax = 100 ;
+			chart.xaxis.rulermin = 0 ;
+			chart.xaxis.style.rulermajorsize = 12 ; 
+			chart.xaxis.style.rulerminorsize = 3 ;
+			chart.setXUnit(25, 0) ;
+			
+			chart.xaxis.label = "bind:Dept" ;
+						
+			chart.yaxis.style.rulermajorsize = 12 ; 
+			chart.yaxis.style.rulerminorsize = 3 ; 
+			chart.setYUnit(20, 5) ;
+			chart.yaxis.rulerbasetype = 'point' ;
+			
+			
+			
+			chart.xaxis.style.lablepadding.set(4, 1, 4, 1) ;
+			chart.yaxis.style.lablepadding.set(4, 1, 4, 1) ;
+			chart.y2axis.style.lablepadding.set(4, 1, 4, 1) ;
+		}
+				
+		function addSerieses(chart){
+			var series1 = new dfChartSeries(chart.name + "__series1__", 0, 0, 0, 0) ;
+			
+			series1.label = "2005年03月" ; 
+			
+			series1.data = "bind:2005年03月" ; 
+
+			series1.type = "pie" ; 
+
+			series1.style.fillbrush.color = "red" ; 
+
+			series1.style.pointshape = "rectangle" ; 
+
+			chart.addSeries(series1) ;
+		}
+
+		var chart  = null ;
+
+		function initChart() {
+			chart  = createChart() ;
+			setChart(chart) ; 
+		}
+					
+		function main(type) {
+			var ds = null ; 
+			
+			if(chart.binddataset != null) {
+				ds = chart.binddataset ;
+				delete ds ;	
+			}
+
+			ds = createDSForChart3() ; 
+			
+			chart.setBindDataSet(ds) ;
+			chart.draw() ;
+			
+		}		
+			
+		
+		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Chart Sample</title>
+	</head>
+	<body>
+		<div id="out"></div>
+		<input type="button" value="Init Chart" onclick="initChart()"/>
+		<input type="button" value="Demo Pie Chart" onclick="main()"/>
+	</body>
+</html>

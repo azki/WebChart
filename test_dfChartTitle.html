@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		
+		<script type="text/javascript" src="src/df.core.js"></script>
+		<script type="text/javascript" src="src/df.chart.js"></script>
+		<script type="text/javascript">
+			function createMainframe() {
+				var mainFrame = new dfMainframe("frame1", 0, 100, 800, 700) ;
+				mainFrame.setParentHTMLObject(window.document.body) ;
+				df.$f = mainFrame ; 
+				
+				var titleMain = new dfChartTitle("chartTitleMain", 250, 50, 550, 150) ;
+				
+				mainFrame.appendChild(titleMain) ;
+				
+				titleMain.setText("Main Title") ; 
+				titleMain.setSubText("Sub Title") ;
+
+				//var mainChart = new dfChart("chart1", 100, 100, 400, 300) ;
+				//mainFrame.appendChild(mainChart) ;
+				
+				//mainChart.title.text = "Another Chart" ;
+				
+				var axisX  = new dfChartAxis("axixX", 0, 500, 800, 600) ;
+				var axisY  = new dfChartAxis("axixY", 0, 200, 100, 600) ;
+				var axisY2 = new dfChartAxis("axixY2", 700, 200, 800, 600) ;
+				
+				mainFrame.appendChild(axisX) ;
+				mainFrame.appendChild(axisY) ;
+				mainFrame.appendChild(axisY2) ;
+
+				axisX.style.color = "black" ; axisX.style.axissize = 2 ;
+				axisY.style.color = "black" ; axisY.style.axissize = 2 ;
+				axisY2.style.color = "black" ; axisY2.style.axissize = 2 ;
+				
+				axisX.rulermajorunit = 20 ;
+				axisX.rulerminorunit = 0 ;
+				axisX.style.rulermajorsize = 20 ;
+				axisX.style.rulerminorsize = 5 ;
+				
+				axisY.rulermajorunit = 10 ;
+				axisY.rulerminorunit = 5 ;
+				axisY.style.rulermajorsize = 20 ;
+				axisY.style.rulerminorsize = 5 ;
+
+				axisY2.rulermajorunit = 10 ;
+				axisY2.rulerminorunit = 5 ;
+				axisY2.style.rulermajorsize = 20 ;
+				axisY2.style.rulerminorsize = 5 ;
+				
+				axisX.setDrawable(100, 600) ; 
+				axisY.setDrawable(100, 300) ; 
+				axisY2.setDrawable(100, 300) ; 
+
+				axisX.type = 1 ; 
+				axisY.type = 3 ; 
+				axisY2.type = 4 ; 
+				
+				axisX.rulerbasetype = "distance" ;
+				
+				axisX.style.lablepadding.set(3, 3, 3, 3) ;
+				axisY.style.lablepadding.set(5, 3, 5, 3) ;
+				axisY2.style.lablepadding.set(5, 3, 5, 3) ;
+				
+				axisX.label = "X Year"
+				axisY.label = "0"
+				axisY2.label = "0"
+				
+				axisX.draw() ;
+				axisY.draw() ;
+				axisY2.draw() ;
+			}
+			
+			function setLabel(text) {
+				lblMain.setText(text) ;
+			}
+			
+			function main() {
+				createMainframe() ;
+			}
+		</script>
+		<title>Untitled Document</title>
+	</head>
+	<body>
+		<input type="button" value="run main()" onclick="main()"/> 
+	</body>
+</html>

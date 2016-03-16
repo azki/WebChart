@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript">
+		function main2() {
+			var label = " bind:labels "
+			var column = label ;
+			
+			var s = new String(label) ;
+			var bind = new String("BIND:") ;
+			var start= s.toUpperCase().indexOf(bind) + bind.length ;
+			
+			column = s.substr(start) ; 
+			alert(column) ;
+		}
+		
+		function main() {
+			var a = new Array() ;
+			a.push(1) ;
+			a.push(2) ;
+			
+			alert(a.constructor) ;
+		}
+		</script>
+        <title>New Web Project</title>
+    </head>
+    <body>
+    	<input type="button" value="run main()" onclick="main()"/>
+		<div id="c" style="clear:both">
+			<div style="float:left;width: 40px; background-color: white; border-width: 0pt;" id="item1__shape__"> </div>
+		</div>
+    </body>
+</html>
